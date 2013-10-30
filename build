@@ -1,5 +1,7 @@
 #!/bin/sh
 
+UGLIFY=./node_modules/.bin/uglifyjs
+
 echo "Building snack.js"
 
 # build base file
@@ -10,7 +12,7 @@ cat src/core.js src/wrap.js src/event.js src/publisher.js src/ajax.js src/elemen
 #sed "s/%build%/$rev/" builds/snack.js > builds/snack-out.js ; mv builds/snack-out.js builds/snack.js
 
 # compress
-uglifyjs builds/snack.js > builds/snack-min.js
+$UGLIFY builds/snack.js > builds/snack-min.js
 gzip -c builds/snack-min.js > builds/snack-min.js.gz
 
 snack=`stat -f %z builds/snack.js`
@@ -35,7 +37,7 @@ rm builds/snack-min.js.gz
 cat builds/snack.js vendor/qwery/qwery.js src/engines/qwery.js > builds/snack-qwery.js
 
 # compress
-uglifyjs builds/snack-qwery.js > builds/snack-qwery-min.js
+$UGLIFY builds/snack-qwery.js > builds/snack-qwery-min.js
 gzip -c builds/snack-qwery-min.js > builds/snack-min.js.gz
 
 snack=`stat -f %z builds/snack-qwery.js`
@@ -60,7 +62,7 @@ rm builds/snack-min.js.gz
 cat builds/snack.js vendor/slick/Source/Slick.Parser.js vendor/slick/Source/Slick.Finder.js src/engines/slick.js > builds/snack-slick.js
 
 # compress
-uglifyjs builds/snack-slick.js > builds/snack-slick-min.js
+$UGLIFY builds/snack-slick.js > builds/snack-slick-min.js
 gzip -c builds/snack-slick-min.js > builds/snack-min.js.gz
 
 snack=`stat -f %z builds/snack-slick.js`
@@ -84,7 +86,7 @@ rm builds/snack-min.js.gz
 cat builds/snack.js vendor/sizzle/sizzle.js src/engines/sizzle.js > builds/snack-sizzle.js
 
 # compress
-uglifyjs builds/snack-sizzle.js > builds/snack-sizzle-min.js
+$UGLIFY builds/snack-sizzle.js > builds/snack-sizzle-min.js
 gzip -c builds/snack-sizzle-min.js > builds/snack-min.js.gz
 
 snack=`stat -f %z builds/snack-sizzle.js`
