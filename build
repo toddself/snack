@@ -4,6 +4,10 @@ UGLIFY=./node_modules/.bin/uglifyjs
 
 echo "Building snack.js"
 
+if [[ ! -d builds ]]; then
+  mkdir builds
+fi
+
 # build base file
 cat src/core.js src/wrap.js src/event.js src/publisher.js src/ajax.js src/element.js > builds/snack.js
 
