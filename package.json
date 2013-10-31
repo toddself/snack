@@ -8,6 +8,8 @@
   "engines": {
     "node": "*"
   },
+  "postinstall": "./build",
+  "main": "builds/snack.js",
   "devDependencies": {
     "express": ">= 2.3.3",
     "uglify-js": "*"
